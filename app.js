@@ -126,7 +126,7 @@ let gameState = {
     currentStage: 0, // 0 = Intro, 1-9 = Tasks, 10 = Victory
     completedStages: [], // Array of solved tasks, e.g. [1, 2, 3...]
     isTransitioning: false,
-    soundEnabled: true
+    soundEnabled: false
 };
 
 /* ==========================================================================
@@ -285,7 +285,6 @@ const screens = {
 const btns = {
     start: document.getElementById('start-game-btn'),
     reset: document.getElementById('reset-btn'),
-    sound: document.getElementById('sound-btn'),
     closeModal: document.getElementById('close-modal-btn'),
     hint: document.getElementById('hint-btn'),
     nextPlayerConfirm: document.getElementById('next-player-confirmed-btn'),
@@ -462,14 +461,7 @@ function loadProgress() {
             const parsed = JSON.parse(saved);
             gameState.currentStage = parsed.currentStage || 0;
             gameState.completedStages = parsed.completedStages || [];
-            gameState.soundEnabled = parsed.soundEnabled !== undefined ? parsed.soundEnabled : true;
-            
-            // Sync Sound button style
-            if (!gameState.soundEnabled) {
-                btns.sound.classList.remove('sound-on');
-                btns.sound.classList.add('sound-off');
-                btns.sound.textContent = "🔇 Ljud Av";
-            }
+            gameState.soundEnabled = parsed.soundEnabled !== undefined ? parsed.soundEnabled : false;
         } catch (e) {
             console.error("Kunde inte läsa sparad speldata", e);
         }
@@ -563,23 +555,7 @@ btns.reset.addEventListener('click', () => {
     }
 });
 
-// Sound Toggle click
-btns.sound.addEventListener('click', () => {
-    gameState.soundEnabled = !gameState.soundEnabled;
-    saveProgress();
-    
-    if (gameState.soundEnabled) {
-        btns.sound.classList.remove('sound-off');
-        btns.sound.classList.add('sound-on');
-        btns.sound.textContent = "🔊 Ljud På";
-        initAudio();
-        AudioSFX.click();
-    } else {
-        btns.sound.classList.remove('sound-on');
-        btns.sound.classList.add('sound-off');
-        btns.sound.textContent = "🔇 Ljud Av";
-    }
-});
+// Sound toggle listener removed
 
 // Map Markers trigger puzzles
 document.querySelectorAll('.map-marker').forEach(marker => {
