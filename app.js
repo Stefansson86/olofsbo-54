@@ -124,13 +124,13 @@ const PUZZLES = {
                     🐻 🌟 🍎 💎 🎈 👑 🍉
                 </div>
                 <div class="cipher-grid">
-                    <div class="cipher-card"><span class="cipher-symbol">👑</span> = <span class="cipher-letter">E</span></div>
-                    <div class="cipher-card"><span class="cipher-symbol">🐻</span> = <span class="cipher-letter">B</span></div>
                     <div class="cipher-card"><span class="cipher-symbol">💎</span> = <span class="cipher-letter">R</span></div>
-                    <div class="cipher-card"><span class="cipher-symbol">🍎</span> = <span class="cipher-letter">Ö</span></div>
-                    <div class="cipher-card"><span class="cipher-symbol">🎈</span> = <span class="cipher-letter">K</span></div>
+                    <div class="cipher-card"><span class="cipher-symbol">🐻</span> = <span class="cipher-letter">B</span></div>
                     <div class="cipher-card"><span class="cipher-symbol">🍉</span> = <span class="cipher-letter">N</span></div>
                     <div class="cipher-card"><span class="cipher-symbol">🌟</span> = <span class="cipher-letter">J</span></div>
+                    <div class="cipher-card"><span class="cipher-symbol">👑</span> = <span class="cipher-letter">E</span></div>
+                    <div class="cipher-card"><span class="cipher-symbol">🍎</span> = <span class="cipher-letter">Ö</span></div>
+                    <div class="cipher-card"><span class="cipher-symbol">🎈</span> = <span class="cipher-letter">K</span></div>
                 </div>
             </div>
         `
