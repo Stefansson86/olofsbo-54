@@ -335,7 +335,8 @@ function updateActivePlayerBanner(player) {
     const banner = document.getElementById('active-player-banner');
     
     activeEmoji.textContent = player.emoji;
-    activeName.textContent = `${player.name}s tur!`;
+    const suffix = player.name.endsWith('s') ? '' : 's';
+    activeName.textContent = `${player.name}${suffix} tur!`;
     
     // Style active banner background according to player
     banner.className = `player-banner player-${player.class.replace(' ', '-')}`;
@@ -373,7 +374,8 @@ function loadPuzzle(stage) {
     if (!puzzle) return;
 
     modalElements.emoji.textContent = puzzle.player.emoji;
-    modalElements.turnTag.textContent = `${puzzle.player.name}s uppdrag (${puzzle.player.age})`;
+    const suffix = puzzle.player.name.endsWith('s') ? '' : 's';
+    modalElements.turnTag.textContent = `${puzzle.player.name}${suffix} uppdrag (${puzzle.player.age})`;
     modalElements.title.textContent = puzzle.title;
     modalElements.question.textContent = puzzle.question;
     modalElements.input.value = '';
