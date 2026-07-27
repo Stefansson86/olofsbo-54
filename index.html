@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Det Stora Skattäventyret!</title>
+    
+    <!-- Google Fonts for Playful and Adventurous Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Main Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Sound Toggle and Utility Buttons (Always Accessible) -->
+    <header class="game-header">
+        <button id="reset-btn" class="utility-btn" title="Starta om äventyret">🔄 Starta om</button>
+        <button id="sound-btn" class="utility-btn sound-on" title="Slå på/av ljud">🔊 Ljud På</button>
+    </header>
+
+    <!-- Canvas for Confetti Animations -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <main class="game-container">
+        <!-- 1. INTRO / WELCOME SCREEN -->
+        <section id="intro-screen" class="game-card fade-in">
+            <h1 class="adventure-title">Det Stora Skattäventyret!</h1>
+            <p class="intro-description">
+                Hej <strong>Frans</strong>, <strong>Alma</strong> och <strong>Lykke</strong>! En hemlig skatt ligger gömd hemma hos er. 
+                För att hitta den måste ni lösa 9 kluriga uppdrag tillsammans.
+            </p>
+            
+            <div class="rules-box">
+                <h3>📜 Äventyrets Guldregler:</h3>
+                <ul>
+                    <li>📱 <strong>Turas om!</strong> Ni måste lämna över mobilen när det är nästa persons tur.</li>
+                    <li>🤝 <strong>Hjälp varandra!</strong> Tillsammans är ni ett oslagbart lag.</li>
+                    <li>🔍 <strong>Håll ögonen öppna!</strong> Sista ledtråden visar exakt var skatten finns.</li>
+                </ul>
+            </div>
+
+            <!-- Avatars Preview -->
+            <div class="avatar-preview-container">
+                <div class="avatar-card boy">
+                    <span class="avatar-emoji">👦</span>
+                    <span class="avatar-name">Frans</span>
+                    <span class="avatar-age">5 år</span>
+                </div>
+                <div class="avatar-card girl alma">
+                    <span class="avatar-emoji">👧</span>
+                    <span class="avatar-name">Alma</span>
+                    <span class="avatar-age">7 år</span>
+                </div>
+                <div class="avatar-card girl lykke">
+                    <span class="avatar-emoji">👧</span>
+                    <span class="avatar-name">Lykke</span>
+                    <span class="avatar-age">8 år</span>
+                </div>
+            </div>
+
+            <button id="start-game-btn" class="primary-btn pulse">Starta Äventyret! 🚀</button>
+        </section>
+
+        <!-- 2. MAIN GAME BOARD -->
+        <section id="game-board" class="fade-in hidden">
+            <!-- Active Player Display -->
+            <div id="active-player-banner" class="player-banner">
+                <div class="active-avatar-circle animate-float">
+                    <span id="active-avatar-emoji">👦</span>
+                </div>
+                <div class="player-banner-text">
+                    <p class="banner-sub">Hållare av mobilen just nu:</p>
+                    <h2 id="active-player-name">Frans tur!</h2>
+                </div>
+            </div>
+
+            <!-- Map Container -->
+            <div class="map-wrapper">
+                <div class="map-card">
+                    <!-- Base Map Generated Asset -->
+                    <img src="assets/map_bg.png" alt="Skattkarta" class="map-image">
+                    
+                    <!-- SVG Path connecting the tasks dynamically (optional visual connector) -->
+                    <svg class="map-path-svg" viewBox="0 0 800 600" preserveAspectRatio="none">
+                        <path id="map-trail" d="M 96 450 Q 256 408 192 288 T 120 192 T 304 132 T 480 156 T 416 270 T 592 360 T 680 480" fill="none" stroke="#d48f43" stroke-width="6" stroke-dasharray="10 10" />
+                    </svg>
+
+                    <!-- Interactive Map Markers (Puzzles 1 to 9) -->
+                    <!-- Absolute positions will be styled in CSS -->
+                    <button id="marker-1" class="map-marker active" data-task="1">
+                        <span class="marker-number">1</span>
+                        <span class="marker-status">🔒</span>
+                    </button>
+                    <button id="marker-2" class="map-marker locked" data-task="2" disabled>
+                        <span class="marker-number">2</span>
+                        <span class="marker-status">🔒</span>
+                    </button>
+                    <button id="marker-3" class="map-marker locked" data-task="3" disabled>
+                        <span class="marker-number">3</span>
+                        <span class="marker-status">🔒</span>
+                    </button>
+                    <button id="marker-4" class="map-marker locked" data-task="4" disabled>
+                        <span class="marker-number">4</span>
+                        <span class="marker-status">🔒</span>
+                    </button>
+                    <button id="marker-5" class="map-marker locked" data-task="5" disabled>
+                        <span class="marker-number">5</span>
+                        <span class="marker-status">🔒</span>
+                    </button>
+                    <button id="marker-6" class="map-marker locked" data-task="6" disabled>
+                        <span class="marker-number">6</span>
+                        <span class="marker-status">🔒</span>
+                    </button>
+                    <button id="marker-7" class="map-marker locked" data-task="7" disabled>
+                        <span class="marker-number">7</span>
+                        <span class="marker-status">🔒</span>
+                    </button>
+                    <button id="marker-8" class="map-marker locked" data-task="8" disabled>
+                        <span class="marker-number">8</span>
+                        <span class="marker-status">🔒</span>
+                    </button>
+                    <button id="marker-9" class="map-marker locked" data-task="9" disabled>
+                        <span class="marker-number">9</span>
+                        <span class="marker-status">🔒</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="game-instructions">
+                <p>Klicka på den lysande cirkeln på kartan för att öppna nästa uppdrag!</p>
+            </div>
+        </section>
+
+        <!-- 3. PUZZLE CONTAINER MODAL -->
+        <section id="puzzle-modal" class="modal hidden">
+            <div class="modal-overlay"></div>
+            <div class="modal-content pop-in">
+                <button id="close-modal-btn" class="close-btn">&times;</button>
+                
+                <div class="puzzle-header">
+                    <span id="puzzle-player-emoji" class="puzzle-avatar">👦</span>
+                    <div>
+                        <span id="puzzle-player-turn" class="player-tag">Frans uppdrag (5 år)</span>
+                        <h2 id="puzzle-title">Uppdrag 1: Djurgåtan</h2>
+                    </div>
+                </div>
+
+                <div class="puzzle-body">
+                    <!-- The Question text -->
+                    <p id="puzzle-question" class="question-text">Gåtan laddas...</p>
+                    
+                    <!-- Dynamic Interactive Puzzle Element (Custom formatted based on active puzzle) -->
+                    <div id="puzzle-interactive-area" class="interactive-area">
+                        <!-- Elements injected dynamically by JS -->
+                    </div>
+
+                    <!-- Input Form -->
+                    <form id="puzzle-form" autocomplete="off">
+                        <div class="input-group">
+                            <input type="text" id="puzzle-input" class="adventure-input" placeholder="Skriv ditt svar här..." required>
+                            <button type="submit" class="submit-answer-btn">Svara! 🗝️</button>
+                        </div>
+                    </form>
+
+                    <!-- Error/Validation feedback message -->
+                    <p id="puzzle-feedback" class="feedback-msg hidden">Hoppsan, inte riktigt rätt! Prova igen!</p>
+
+                    <!-- Hints Area -->
+                    <div class="hint-section">
+                        <button id="hint-btn" class="hint-toggle-btn">💡 Få en ledtråd</button>
+                        <p id="hint-text" class="hint-text-box hidden">Det här är en ledtråd.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. PASS THE DEVICE SCREEN -->
+        <section id="pass-screen" class="game-card fade-in hidden">
+            <h2 class="pass-title">Rätt svar! 🎉</h2>
+            <div class="confetti-cup animate-bounce">🏆</div>
+            
+            <div class="pass-box">
+                <p class="pass-instruction">Nu är det dags att lämna över mobilen!</p>
+                <div class="pass-arrow">➡️</div>
+                
+                <div class="pass-avatars">
+                    <div class="pass-avatar-from">
+                        <span id="pass-from-emoji" class="large-emoji">👦</span>
+                        <span id="pass-from-name">Frans</span>
+                    </div>
+                    <div class="pass-avatar-to">
+                        <span id="pass-to-emoji" class="large-emoji animate-pulse">👧</span>
+                        <span id="pass-to-name" class="highlight-name">Alma</span>
+                    </div>
+                </div>
+                
+                <p class="pass-warning">Se till att <strong><span id="pass-to-name-warning">Alma</span></strong> håller i mobilen nu!</p>
+            </div>
+            
+            <button id="next-player-confirmed-btn" class="primary-btn">Jag har tagit över mobilen! 📱</button>
+        </section>
+
+        <!-- 5. FINAL VICTORY SCREEN -->
+        <section id="victory-screen" class="game-card fade-in hidden">
+            <h1 class="victory-title animate-bounce">Alla uppdrag lösta! 👑</h1>
+            <p class="victory-subtitle">Fantastiskt jobbat Frans, Alma och Lykke!</p>
+            
+            <div class="victory-scroll">
+                <h2>📜 HÄR LIGGER SKATTEN:</h2>
+                <div class="victory-clue">
+                    <span class="clue-highlight">Skatten är gömd bakom björken! 🌳</span>
+                </div>
+                <p class="victory-sub-clue">Spring ut tillsammans och leta noga! Lycka till! 🍬🍭</p>
+            </div>
+            
+            <div class="birch-illustration">
+                <!-- A CSS or simple SVG representation of a birch tree with a treasure chest behind it -->
+                <svg width="200" height="250" viewBox="0 0 200 250">
+                    <!-- Tree trunk with birch black/white stripes -->
+                    <rect x="90" y="80" width="20" height="150" fill="#f0f0f0" rx="3" />
+                    <!-- Birch horizontal black stripes -->
+                    <line x1="90" y1="100" x2="100" y2="100" stroke="#111" stroke-width="3" />
+                    <line x1="100" y1="120" x2="110" y2="120" stroke="#111" stroke-width="3" />
+                    <line x1="90" y1="140" x2="105" y2="140" stroke="#111" stroke-width="3" />
+                    <line x1="100" y1="170" x2="110" y2="170" stroke="#111" stroke-width="3" />
+                    <line x1="90" y1="200" x2="98" y2="200" stroke="#111" stroke-width="3" />
+                    <!-- Green Foliage -->
+                    <circle cx="100" cy="70" r="50" fill="#2d7a43" opacity="0.9" />
+                    <circle cx="70" cy="85" r="35" fill="#3b9655" opacity="0.9" />
+                    <circle cx="130" cy="85" r="35" fill="#3b9655" opacity="0.9" />
+                    <!-- Red X indicating treasure behind it -->
+                    <path d="M 70 210 L 90 230 M 90 210 L 70 230" stroke="#e63946" stroke-width="6" stroke-linecap="round" />
+                    <!-- Treasure Chest icon -->
+                    <text x="50" y="228" font-size="28">🪙</text>
+                    <text x="65" y="242" font-size="28">🎁</text>
+                </svg>
+            </div>
+
+            <button id="play-again-btn" class="secondary-btn">Spela Igen 🔄</button>
+        </section>
+    </main>
+
+    <!-- App Logic Script -->
+    <script src="app.js"></script>
+</body>
+</html>
