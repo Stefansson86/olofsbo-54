@@ -114,11 +114,26 @@ const PUZZLES = {
     },
     11: {
         player: PLAYERS.Lykke,
-        title: "Uppdrag 11: Namngåtan",
-        question: "Vad är det som tillhör dig, men som andra personer använder mycket mer än du själv?",
-        hint: "Det är vad folk ropar när de vill prata med dig eller kalla på dig.",
-        answers: ["namn", "namnet", "mittnamn"],
-        customUI: null
+        title: "Uppdrag 11: Skogens lösenord",
+        question: "Hitta det hemliga lösenordet genom att översätta tecknen med hjälp av kodboken under. Skriv sedan in ordet!",
+        hint: "Det är namnet på ett träd med vit bark där skatten ligger gömd! Det börjar på B och slutar på N.",
+        answers: ["björken", "björk"],
+        customUI: `
+            <div class="cipher-book-container">
+                <div class="secret-code-display animate-pulse">
+                    🐻 🌟 🍎 💎 🎈 👑 🍉
+                </div>
+                <div class="cipher-grid">
+                    <div class="cipher-card"><span class="cipher-symbol">👑</span> = <span class="cipher-letter">E</span></div>
+                    <div class="cipher-card"><span class="cipher-symbol">🐻</span> = <span class="cipher-letter">B</span></div>
+                    <div class="cipher-card"><span class="cipher-symbol">💎</span> = <span class="cipher-letter">R</span></div>
+                    <div class="cipher-card"><span class="cipher-symbol">🍎</span> = <span class="cipher-letter">Ö</span></div>
+                    <div class="cipher-card"><span class="cipher-symbol">🎈</span> = <span class="cipher-letter">K</span></div>
+                    <div class="cipher-card"><span class="cipher-symbol">🍉</span> = <span class="cipher-letter">N</span></div>
+                    <div class="cipher-card"><span class="cipher-symbol">🌟</span> = <span class="cipher-letter">J</span></div>
+                </div>
+            </div>
+        `
     },
     12: {
         player: PLAYERS.Tim,
