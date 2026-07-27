@@ -1072,6 +1072,18 @@ body {
     20%, 40%, 60%, 80% { transform: translateX(8px); }
 }
 
+.victory-clue-image {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    border-radius: var(--radius-md);
+    border: 6px solid var(--color-wood);
+    box-shadow: var(--shadow-premium);
+    margin: 16px auto;
+    display: block;
+    animation: pulse-glow 2s infinite ease-in-out;
+}
+
 /* Responsive Scaling adjusts */
 @media (max-width: 480px) {
     body {
