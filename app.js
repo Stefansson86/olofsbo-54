@@ -68,10 +68,10 @@ const PUZZLES = {
     },
     6: {
         player: PLAYERS.Lykke,
-        title: "Uppdrag 6: Tandgåtan",
-        question: "Jag har massor av tänder men kan inte äta någonting. Jag hjälper dig att göra ditt hår fint på morgonen. Vad är jag?",
-        hint: "Jag rimmar på ordet dam och börjar på bokstaven K.",
-        answers: ["kam", "kammen", "enkam"],
+        title: "Uppdrag 6: Piratmatten",
+        question: "Ett piratskepp har 4 segel. Varje segel har 3 röda ränder målade på sig. Hur många röda ränder finns det sammanlagt på alla segel?",
+        hint: "Räkna 3 + 3 + 3 + 3, eller tänk: vad blir 4 gånger 3?",
+        answers: ["12", "tolv"],
         customUI: null
     },
     7: {
@@ -89,10 +89,10 @@ const PUZZLES = {
     },
     8: {
         player: PLAYERS.Alma,
-        title: "Uppdrag 8: Glassmatten",
-        question: "Om 3 glassar kostar 15 kronor tillsammans i affären, hur mycket kostar 1 glass då?",
-        hint: "Räkna med fem-skutt! 5 + 5 + 5 = 15. Vad kostar då en glass?",
-        answers: ["5", "fem"],
+        title: "Uppdrag 8: Ögon-gåtan",
+        question: "Vem har ett öga men kan inte se någonting alls?",
+        hint: "Du använder mig tillsammans med en tråd när du ska sy eller laga kläder.",
+        answers: ["nål", "nålen", "ennål"],
         customUI: null
     },
     9: {
@@ -434,7 +434,7 @@ function loadPuzzle(stage) {
     }
 
     // Set placeholder depending on input type
-    if (stage === 2) {
+    if (stage === 2 || stage === 6) {
         modalElements.input.type = "number";
         modalElements.input.placeholder = "Skriv siffran här...";
     } else {
