@@ -472,7 +472,7 @@ function loadPuzzle(stage) {
     }
 
     // Set placeholder depending on input type
-    if (stage === 2 || stage === 6) {
+    if (stage === 2 || stage === 4 || stage === 7) {
         modalElements.input.type = "number";
         modalElements.input.placeholder = "Skriv siffran här...";
     } else {
