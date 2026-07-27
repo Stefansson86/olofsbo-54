@@ -4,7 +4,8 @@
 const PLAYERS = {
     Frans: { name: "Frans", age: "5 år", emoji: "👦", class: "boy" },
     Alma: { name: "Alma", age: "7 år", emoji: "👧", class: "girl alma" },
-    Lykke: { name: "Lykke", age: "8 år", emoji: "👧", class: "girl lykke" }
+    Lykke: { name: "Lykke", age: "8 år", emoji: "👧", class: "girl lykke" },
+    Tim: { name: "Tim", age: "8 år", emoji: "👦", class: "boy tim" }
 };
 
 const PUZZLES = {
@@ -38,8 +39,16 @@ const PUZZLES = {
         customUI: null
     },
     4: {
+        player: PLAYERS.Tim,
+        title: "Uppdrag 4: Spindelmatte",
+        question: "En spindel har 8 ben. Hur många ben har 3 spindlar tillsammans?",
+        hint: "Räkna 8 + 8 + 8, eller tänk: vad blir 3 gånger 8?",
+        answers: ["24", "tjugofyra"],
+        customUI: null
+    },
+    5: {
         player: PLAYERS.Frans,
-        title: "Uppdrag 4: Hoppiga kompisen",
+        title: "Uppdrag 5: Hoppiga kompisen",
         question: "Jag är grön, gillar att hoppa och bor i eller nära dammar. Jag säger ibland 'kvack' eller 'ko-ack'. Vad är jag?",
         hint: "Mitt namn börjar på bokstaven G. Jag var en prins i en känd saga!",
         answers: ["groda", "grodan", "engroda"],
@@ -50,9 +59,9 @@ const PUZZLES = {
             { text: "Anka", emoji: "🦆" }
         ]
     },
-    5: {
+    6: {
         player: PLAYERS.Alma,
-        title: "Uppdrag 5: Bokstavsröran",
+        title: "Uppdrag 6: Bokstavsröran",
         question: "Kasta om bokstäverna i ordet nedan för att hitta ett djur med långa öron som äter morötter och skuttar runt.",
         hint: "Börjar på K och slutar på N. Ordet har 5 bokstäver.",
         answers: ["kanin", "kaninen", "enkanin"],
@@ -66,17 +75,25 @@ const PUZZLES = {
             </div>
         `
     },
-    6: {
+    7: {
         player: PLAYERS.Lykke,
-        title: "Uppdrag 6: Piratmatten",
+        title: "Uppdrag 7: Piratmatten",
         question: "Ett piratskepp har 4 segel. Varje segel har 3 röda ränder målade på sig. Hur många röda ränder finns det sammanlagt på alla segel?",
         hint: "Räkna 3 + 3 + 3 + 3, eller tänk: vad blir 4 gånger 3?",
         answers: ["12", "tolv"],
         customUI: null
     },
-    7: {
+    8: {
+        player: PLAYERS.Tim,
+        title: "Uppdrag 8: Nyckelgåtan",
+        question: "Jag har ett huvud men ingen kropp. Jag har ett skägg men inget hår. Jag kan öppna stängda dörrar. Vad är jag?",
+        hint: "Du sätter mig i ett nyckelhål och vrider om.",
+        answers: ["nyckel", "nyckeln", "ennyckel"],
+        customUI: null
+    },
+    9: {
         player: PLAYERS.Frans,
-        title: "Uppdrag 7: Havets jätte",
+        title: "Uppdrag 9: Havets jätte",
         question: "Jag bor i havet, är jättestor (störst i hela världen!) och sprutar vatten från ett hål på mitt huvud. Vad är jag?",
         hint: "Mitt namn börjar på V och rimmar på ordet skal.",
         answers: ["val", "valen", "enval"],
@@ -87,17 +104,25 @@ const PUZZLES = {
             { text: "Krabba", emoji: "🦀" }
         ]
     },
-    8: {
+    10: {
         player: PLAYERS.Alma,
-        title: "Uppdrag 8: Ögon-gåtan",
+        title: "Uppdrag 10: Ögon-gåtan",
         question: "Vem har ett öga men kan inte se någonting alls?",
         hint: "Du använder mig tillsammans med en tråd när du ska sy eller laga kläder.",
         answers: ["nål", "nålen", "ennål"],
         customUI: null
     },
-    9: {
+    11: {
         player: PLAYERS.Lykke,
-        title: "Uppdrag 9: Det hemliga chiffret",
+        title: "Uppdrag 11: Namngåtan",
+        question: "Vad är det som tillhör dig, men som andra personer använder mycket mer än du själv?",
+        hint: "Det är vad folk ropar när de vill prata med dig eller kalla på dig.",
+        answers: ["namn", "namnet", "mittnamn"],
+        customUI: null
+    },
+    12: {
+        player: PLAYERS.Tim,
+        title: "Uppdrag 12: Det hemliga chiffret",
         question: "Öppna sista låset genom att översätta tecknen i den hemliga koden med hjälp av kodboken under. Skriv sedan in ordet för att avslöja skatten!",
         hint: "Ordet bildar det ni letar efter just nu! Det börjar på S och slutar på N.",
         answers: ["skatten", "skatt"],
@@ -123,7 +148,7 @@ const PUZZLES = {
    GAME STATE VARIABLES
    ========================================================================== */
 let gameState = {
-    currentStage: 0, // 0 = Intro, 1-9 = Tasks, 10 = Victory
+    currentStage: 0, // 0 = Intro, 1-12 = Tasks, 13 = Victory
     completedStages: [], // Array of solved tasks, e.g. [1, 2, 3...]
     isTransitioning: false,
     soundEnabled: false
@@ -342,7 +367,7 @@ function updateActivePlayerBanner(player) {
 
 // Update Map markers based on progression
 function updateMapUI() {
-    for (let i = 1; i <= 9; i++) {
+    for (let i = 1; i <= 12; i++) {
         const marker = document.getElementById(`marker-${i}`);
         const statusSpan = marker.querySelector('.marker-status');
         
@@ -492,7 +517,7 @@ function handleCorrectAnswer() {
 
     const lastCompleted = gameState.currentStage;
     
-    if (lastCompleted < 9) {
+    if (lastCompleted < 12) {
         // Increment stage and trigger Pass Screen
         gameState.currentStage += 1;
         saveProgress();
@@ -513,7 +538,7 @@ function handleCorrectAnswer() {
         }, 300);
     } else {
         // Victory!
-        gameState.currentStage = 10;
+        gameState.currentStage = 13;
         saveProgress();
         setTimeout(() => {
             AudioSFX.victory();
@@ -616,7 +641,7 @@ window.addEventListener('DOMContentLoaded', () => {
     
     if (gameState.currentStage === 0) {
         showScreen(screens.intro);
-    } else if (gameState.currentStage === 10) {
+    } else if (gameState.currentStage === 13) {
         showScreen(screens.victory);
     } else {
         updateMapUI();

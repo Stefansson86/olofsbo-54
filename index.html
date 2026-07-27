@@ -24,8 +24,8 @@
         <section id="intro-screen" class="game-card fade-in">
             <h1 class="adventure-title">Det Stora Skattäventyret!</h1>
             <p class="intro-description">
-                Hej <strong>Frans</strong>, <strong>Alma</strong> och <strong>Lykke</strong>! En hemlig skatt ligger gömd hemma hos er. 
-                För att hitta den måste ni lösa 9 kluriga uppdrag tillsammans.
+                Hej <strong>Frans</strong>, <strong>Alma</strong>, <strong>Lykke</strong> och <strong>Tim</strong>! En hemlig skatt ligger gömd hemma hos er. 
+                För att hitta den måste ni lösa 12 kluriga uppdrag tillsammans.
             </p>
             
             <div class="rules-box">
@@ -54,6 +54,11 @@
                     <span class="avatar-name">Lykke</span>
                     <span class="avatar-age">8 år</span>
                 </div>
+                <div class="avatar-card boy tim">
+                    <span class="avatar-emoji">👦</span>
+                    <span class="avatar-name">Tim</span>
+                    <span class="avatar-age">8 år</span>
+                </div>
             </div>
 
             <button id="start-game-btn" class="primary-btn pulse">Starta Äventyret! 🚀</button>
@@ -80,10 +85,10 @@
                     
                     <!-- SVG Path connecting the tasks dynamically (optional visual connector) -->
                     <svg class="map-path-svg" viewBox="0 0 800 600" preserveAspectRatio="none">
-                        <path id="map-trail" d="M 96 450 Q 256 408 192 288 T 120 192 T 304 132 T 480 156 T 416 270 T 592 360 T 680 480" fill="none" stroke="#d48f43" stroke-width="6" stroke-dasharray="10 10" />
+                        <path id="map-trail" d="M 80 492 Q 192 420 128 312 T 176 228 T 112 132 T 304 96 T 496 132 T 400 228 T 464 324 T 416 420 T 592 492 T 704 450" fill="none" stroke="#d48f43" stroke-width="6" stroke-dasharray="10 10" />
                     </svg>
 
-                    <!-- Interactive Map Markers (Puzzles 1 to 9) -->
+                    <!-- Interactive Map Markers (Puzzles 1 to 12) -->
                     <!-- Absolute positions will be styled in CSS -->
                     <button id="marker-1" class="map-marker active" data-task="1">
                         <span class="marker-number">1</span>
@@ -119,6 +124,18 @@
                     </button>
                     <button id="marker-9" class="map-marker locked" data-task="9" disabled>
                         <span class="marker-number">9</span>
+                        <span class="marker-status">🔒</span>
+                    </button>
+                    <button id="marker-10" class="map-marker locked" data-task="10" disabled>
+                        <span class="marker-number">10</span>
+                        <span class="marker-status">🔒</span>
+                    </button>
+                    <button id="marker-11" class="map-marker locked" data-task="11" disabled>
+                        <span class="marker-number">11</span>
+                        <span class="marker-status">🔒</span>
+                    </button>
+                    <button id="marker-12" class="map-marker locked" data-task="12" disabled>
+                        <span class="marker-number">12</span>
                         <span class="marker-status">🔒</span>
                     </button>
                 </div>

@@ -412,16 +412,19 @@ body {
     box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
-/* Absolute Positions of 9 task markers on the map grid */
-#marker-1 { top: 75%; left: 12%; }
-#marker-2 { top: 68%; left: 32%; }
-#marker-3 { top: 48%; left: 24%; }
-#marker-4 { top: 32%; left: 15%; }
-#marker-5 { top: 22%; left: 38%; }
-#marker-6 { top: 26%; left: 60%; }
-#marker-7 { top: 45%; left: 52%; }
-#marker-8 { top: 60%; left: 74%; }
-#marker-9 { top: 80%; left: 85%; }
+/* Absolute Positions of 12 task markers on the map grid */
+#marker-1 { top: 82%; left: 10%; }
+#marker-2 { top: 70%; left: 24%; }
+#marker-3 { top: 52%; left: 16%; }
+#marker-4 { top: 38%; left: 22%; }
+#marker-5 { top: 22%; left: 14%; }
+#marker-6 { top: 16%; left: 38%; }
+#marker-7 { top: 22%; left: 62%; }
+#marker-8 { top: 38%; left: 50%; }
+#marker-9 { top: 54%; left: 58%; }
+#marker-10 { top: 70%; left: 52%; }
+#marker-11 { top: 82%; left: 74%; }
+#marker-12 { top: 75%; left: 88%; }
 
 /* Marker States styling */
 .map-marker.locked {
