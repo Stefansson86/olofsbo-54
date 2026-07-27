@@ -324,7 +324,6 @@ const screens = {
 
 const btns = {
     start: document.getElementById('start-game-btn'),
-    reset: document.getElementById('reset-btn'),
     closeModal: document.getElementById('close-modal-btn'),
     hint: document.getElementById('hint-btn'),
     nextPlayerConfirm: document.getElementById('next-player-confirmed-btn'),
@@ -587,12 +586,7 @@ btns.start.addEventListener('click', () => {
     showScreen(screens.board);
 });
 
-// Restart button
-btns.reset.addEventListener('click', () => {
-    if (confirm("Vill du verkligen starta om skattejakten från början?")) {
-        resetGame();
-    }
-});
+// Restart button removed
 
 // Sound toggle listener removed
 
